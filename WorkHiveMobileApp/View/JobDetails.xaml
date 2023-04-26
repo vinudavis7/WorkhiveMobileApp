@@ -11,17 +11,16 @@
         <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
             <VerticalStackLayout Margin="20" Spacing="10">
                 <Label 
-                    Text="{Binding ToDo.Title}" 
+                    Text="{Binding JobList.Title}" 
                     FontSize="25" 
                     FontAttributes="Bold" />
                 <BoxView HeightRequest="10" Color="White" />
-                <Label Text="{Binding ToDo.Location}"
+                <Label Text="{Binding JobList.Location}"
                     FontAttributes="Italic"
                     VerticalOptions="End" />
-                <Label Text="{Binding ToDo.JobType}"
+                <Label Text="{Binding JobList.JobType}"
                     FontAttributes="Italic"
                     VerticalOptions="End" />
-                <!--<BoxView HeightRequest="1" BackgroundColor="Black" />-->
                 <Label Text="Job details"
                     FontAttributes="Italic"
                     VerticalOptions="End" 
@@ -31,7 +30,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Budget: " />
-                            <Span Text="{Binding ToDo.Budget}" />
+                            <Span Text="{Binding JobList.Budget}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -39,7 +38,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Deadline: " />
-                            <Span Text="{Binding ToDo.Deadline}" />
+                            <Span Text="{Binding JobList.Deadline}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -47,7 +46,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Skills: " />
-                            <Span Text="{Binding ToDo.SkillTags}" />
+                            <Span Text="{Binding JobList.SkillTags}" />
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -56,7 +55,7 @@
                     FontAttributes="Italic"
                     VerticalOptions="End" 
                     FontSize="22" />
-                <Label Text="{Binding ToDo.Description}"
+                <Label Text="{Binding JobList.Description}"
                     FontAttributes="Italic"
                     VerticalOptions="End" />
             </VerticalStackLayout>

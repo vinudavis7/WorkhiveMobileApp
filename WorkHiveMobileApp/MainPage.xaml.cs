@@ -4,24 +4,16 @@ using WorkHiveMobileApp.ViewModel;
 
 namespace WorkHiveMobileApp;
 
+//This is the code behind file of MainPage
 public partial class MainPage : ContentPage
 {
-	int count = 0;
-
-    //public MainPage()
-    //{
-    //    InitializeComponent();
-
-    //}
-    public JobsViewModel vm;
-    public MainPage(JobsViewModel jm)
+    public JobsViewModel viewModel;
+    public MainPage(JobsViewModel jobsViewModel)
 	{
 		InitializeComponent();
-        BindingContext = jm;
-        vm = jm;
-        vm.LoadPostsCommand.Execute(null);
+        BindingContext = jobsViewModel;
+        viewModel = jobsViewModel; //binding the viewmodel to view
+        viewModel.LoadJobsCommand.Execute(null); //initiating dataloading
     }
-
-
 }
 

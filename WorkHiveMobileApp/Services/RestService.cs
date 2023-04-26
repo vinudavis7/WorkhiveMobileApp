@@ -12,13 +12,14 @@ using WorkHiveMobileApp.ViewModel;
 
 namespace WorkHiveMobileApp.Services
 {
+    //This class is used for making rest api calls to Web api
     public class RestService 
     {
         HttpClient _client;
         JsonSerializerOptions _serializerOptions;
 
         public List<Jobs> Items { get; private set; }
-
+        private string apiURL = "https://apiworkhive.azurewebsites.net//api/Jobs";
         public RestService()
         {
             _client = new HttpClient();
@@ -33,7 +34,7 @@ namespace WorkHiveMobileApp.Services
         {
              Items = new List<Jobs>();
             string content = "";
-            Uri uri = new Uri("https://c1056386.azurewebsites.net/api/Jobs");
+            Uri uri = new Uri(apiURL);
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri);
@@ -41,15 +42,13 @@ namespace WorkHiveMobileApp.Services
                 {
                      content = await response.Content.ReadAsStringAsync();
                     var obj = JsonConvert.DeserializeObject(content);
-                    //var data = (JArray)JObject.Parse(content)["data"];
                     Items =   JsonConvert.DeserializeObject<List<Jobs>>(obj.ToString());
                 }
             }
             catch (Exception ex)
             {
-               // Debug.WriteLine(@"\tERROR {0}", ex.Message);
+               
             }
-
             return Items;
         }
         public async Task<Jobs> GetJobDetails(int id)
@@ -57,26 +56,21 @@ namespace WorkHiveMobileApp.Services
 
             Jobs ob = new Jobs();
             string content = "";
-            Uri uri = new Uri("https://c1056386.azurewebsites.net/api/Jobs/GetDetails/" + id);
+            Uri uri = new Uri(apiURL + id);
             try
             {
                 HttpResponseMessage response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     content = await response.Content.ReadAsStringAsync();
-                    var obj = JsonConvert.DeserializeObject(content);
-                   
-                   //var data = JObject.Parse(content)["data"];
+                    var obj = JsonConvert.DeserializeObject(content);                  
                     ob = JsonConvert.DeserializeObject<Jobs>(obj.ToString());
                 }
             }
             catch (Exception ex)
             {
-                // Debug.WriteLine(@"\tERROR {0}", ex.Message);
             }
-
             return ob;
         }
-
     }
 }

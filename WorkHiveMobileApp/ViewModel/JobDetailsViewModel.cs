@@ -11,21 +11,22 @@ using WorkHiveMobileApp.Services;
 
 namespace WorkHiveMobileApp.ViewModel
 {
+    //This viewmodel is binded with JobDetails view
     public partial class JobDetailsViewModel: ObservableObject
     {
-        Jobs toDo = new Jobs();
-        public Jobs ToDo { get { return toDo; } set => SetProperty(ref toDo, value); }
-        public ICommand LoadPostsCommand { get; }
-        public string Name1 { get; set; }
+        Jobs jobList = new Jobs();
+        public Jobs JobList { get { return jobList; } set => SetProperty(ref jobList, value); }
+        public ICommand LoadJobsCommand { get; }
+        public string Id { get; set; }
         public JobDetailsViewModel()
         {
-            LoadPostsCommand = new Command(async () => await LoadPostsAsync());
+            LoadJobsCommand = new Command(async () => await LoadJobsAsync());
         }
         
-        private async Task LoadPostsAsync()
+        private async Task LoadJobsAsync()
         {
             RestService service = new RestService();
-            ToDo = await service.GetJobDetails(Convert.ToInt32(this.Name1));
+            JobList = await service.GetJobDetails(Convert.ToInt32(this.Id));
         }
     }
 }
